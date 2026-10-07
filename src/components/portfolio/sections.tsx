@@ -33,12 +33,12 @@ export function SkillRibbon() {
   return <div className="skill-ribbon"><div className="site-container skill-ribbon-inner">{[[Terminal, 'Python'], [Code2, 'Java'], [Database, 'SQL'], [BarChart3, 'Power BI'], [BrainCircuit, 'Machine Learning'], [ScanEye, 'Computer Vision']].map(([Icon, name]) => { const I = Icon as typeof Terminal; return <div key={String(name)} className="ribbon-item"><I/><span>{String(name)}</span></div> })}</div></div>
 }
 function ProjectCard({ project, onSelect }: { project: Project; onSelect: () => void }) {
-  return <motion.article whileHover={{ y: -5 }} transition={{ duration: .2 }} className="project-card h-full flex flex-col">
+  return <motion.article whileHover={{ y: -5 }} transition={{ duration: .2 }} className="project-card h-full flex flex-col cursor-pointer" onClick={onSelect}>
     <div className="project-art"><img src={project.image} alt={project.alt} width={1200} height={768} loading="lazy"/><span className="project-image-label">{project.id === 'plant' ? <Leaf size={11} className="text-primary"/> : <ScanEye size={11} className="text-cyan"/>}{project.category}</span><span className="project-number">PROJECT / {project.number}</span></div>
     <div className="project-body flex flex-col flex-1"><div className="flex gap-2 items-center mb-3"><span className={`text-[10px] flex items-center gap-1.5 ${project.id === 'plant' ? 'text-violet' : 'text-cyan'}`}><Users size={12}/>{project.role}</span>{project.achievement && <span className="text-primary text-[9px] flex items-center gap-1 ml-auto"><Trophy size={11}/>First Prize</span>}</div>
       <h3 className="project-heading">{project.title}</h3><p className="project-description">{project.description}</p>
       <div className="flex flex-wrap gap-1.5 mt-5">{project.tags.map(tag => <span className="tag" key={tag}>{tag}</span>)}</div>
-      <div className="project-footer"><span className="text-[10px] text-muted-foreground font-mono">AI for practical impact</span><Button variant="ghost" size="sm" className="text-xs px-0 text-foreground" onClick={onSelect} aria-label={`View ${project.title}`}>View Project <ArrowUpRight/></Button></div>
+      <div className="project-footer"><span className="text-[10px] text-muted-foreground font-mono">AI for practical impact</span><Button variant="ghost" size="sm" className="text-xs px-0 text-foreground" onClick={event => { event.stopPropagation(); onSelect() }} aria-label={`View ${project.title}`}>View Project <ArrowUpRight/></Button></div>
     </div>
   </motion.article>
 }
