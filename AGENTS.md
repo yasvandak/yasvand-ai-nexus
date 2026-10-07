@@ -14,3 +14,4 @@
 - Keep résumé-backed content in a shared typed module and render reusable portfolio sections; this prevents factual drift across pages and project dialogs.
 - Give each major navigation destination its own file-based route and metadata; this supports accessible navigation and independently shareable pages.
 - The contact form creates a mailto draft, never simulates delivery; no sending service is configured.
+- Prebundle portfolio motion and Radix UI dependencies with React at startup; avoid late dependency optimization mixing React instances in an open preview.
